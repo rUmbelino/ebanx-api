@@ -10,9 +10,9 @@ const Account = require('../models/Account');
 const router = Router();
 const BALANCE = '/balance';
 
-router.get(`${BALANCE}/:account_id`, (req, res) => {
+router.get(`${BALANCE}`, (req, res) => {
   try {
-    const [, account_id] = req.params.account_id.split('=');
+    const { account_id } = req.query;
     const account = Account.findById(account_id);
 
     if (!account) {
