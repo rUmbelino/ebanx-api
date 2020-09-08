@@ -24,7 +24,7 @@ describe('event', () => {
   it('should sucessfylly handle deposit event', () => {
     const type = 'deposit';
     const amount = 150;
-    const destination = 10;
+    const destination = '10';
     const { status, message } = eventHandler({ type, amount, destination });
     expect(status).toBe(STATUS_CREATED);
     expect(message).toEqual({
@@ -47,7 +47,7 @@ describe('event', () => {
   it('should succed on withdraw', () => {
     const type = 'withdraw';
     const amount = 150;
-    const origin = 10;
+    const origin = '10';
 
     Account.deposit({ destination: origin, amount: 200 });
 

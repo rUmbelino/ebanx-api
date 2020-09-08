@@ -2,7 +2,7 @@ const Storage = require('./Storage');
 
 class Account {
   constructor(id, balance = 0) {
-    this._id = id || new Date().getTime();
+    this._id = String(id || new Date().getTime());
     this._balance = balance;
   }
 
