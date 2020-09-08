@@ -12,7 +12,7 @@ const BALANCE = '/balance';
 
 router.get(`${BALANCE}/:account_id`, (req, res) => {
   try {
-    const { account_id } = req.params;
+    const [, account_id] = req.params.account_id.split('=');
     const account = Account.findById(account_id);
 
     if (!account) {
