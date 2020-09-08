@@ -29,6 +29,15 @@ class Account {
     Storage.setItem('accounts', accounts);
   }
 
+  static withdraw({ origin, amount }) {
+    const account = this.findById(origin);
+    if (!account) throw new Error('Cannow withdraw from non existing account');
+
+    account.balance -= Number(amount);
+    account.persist();
+    return account;
+  }
+
   static deposit({ destination, amount }) {
     let account = this.findById(destination);
     if (!account) {
