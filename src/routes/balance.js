@@ -8,9 +8,8 @@ const {
 const Account = require('../models/Account');
 
 const router = Router();
-const BALANCE = '/balance';
 
-router.get(`${BALANCE}`, (req, res) => {
+router.get('/balance', (req, res) => {
   try {
     const { account_id } = req.query;
     const account = Account.findById(account_id);

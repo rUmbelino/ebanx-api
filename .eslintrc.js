@@ -9,7 +9,8 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    'linebreak-style': 0,
     camelcase: 0,
+    'linebreak-style': 0,
+    'consistent-return': 0,
   },
 };
