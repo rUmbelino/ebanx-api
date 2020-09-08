@@ -1,9 +1,8 @@
 const express = require('express');
+const routesGenerator = require('./routes/routesGenerator');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+routesGenerator(app);
 
 module.exports = app;
