@@ -12,4 +12,9 @@ describe('Account', () => {
     const account = Account.findById(25);
     expect(account).toBeUndefined();
   });
+
+  it('should deposit value on unexisting account', () => {
+    const account = Account.deposit({ id: 100, amount: 10 });
+    expect(account.balance).toBe(10);
+  });
 });
