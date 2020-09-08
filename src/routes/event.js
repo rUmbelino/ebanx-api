@@ -2,6 +2,7 @@ const { Router } = require('express');
 
 const {
   STATUS_ERROR,
+  STATUS_CREATED,
   STATUS_NOT_FOUND,
   MESSAGE_NOT_FOUND,
 } = require('./constants');
@@ -15,7 +16,7 @@ router.post('/event', (req, res) => {
 
     if (type === 'deposit') {
       const { id, balance } = Account.deposit(req.body);
-      res.send({
+      res.status(STATUS_CREATED).send({
         destination: { id, balance },
       });
       return;
