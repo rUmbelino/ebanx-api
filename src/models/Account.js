@@ -2,7 +2,7 @@ const Storage = require('./Storage');
 
 class Account {
   constructor(id, balance = 0) {
-    this._id = id;
+    this._id = id || new Date().getTime();
     this._balance = balance;
   }
 
@@ -15,7 +15,7 @@ class Account {
   }
 
   set balance(balance) {
-    this._balance += balance;
+    this._balance = balance;
   }
 
   static findById(account_id) {
@@ -23,13 +23,20 @@ class Account {
     return accounts[account_id];
   }
 
-  static deposit({ id, amount }) {
-    let account = this.findById(id);
+  persist() {
+    let accounts = Storage.getItem('accounts') || {};
+    accounts = { ...accounts, [this.id]: this };
+    Storage.setItem('accounts', accounts);
+  }
+
+  static deposit({ destination, amount }) {
+    let account = this.findById(destination);
     if (!account) {
-      account = new Account(id);
+      account = new Account(Number(destination));
     }
 
-    account.balance += amount;
+    account.balance += Number(amount);
+    account.persist();
     return account;
   }
 }
