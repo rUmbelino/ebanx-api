@@ -60,4 +60,48 @@ describe('event', () => {
       },
     });
   });
+
+  it('should fail on transfer from non existing account with 404', () => {
+    const type = 'transfer';
+    const amount = 100;
+    const origin = 1;
+    const destination = 2;
+
+    const { status, message } = eventHandler({
+      type,
+      origin,
+      amount,
+      destination,
+    });
+
+    expect(status).toBe(STATUS_NOT_FOUND);
+    expect(message).toBe(MESSAGE_NOT_FOUND);
+  });
+
+  it('should succeed on transfer from existing account', () => {
+    const type = 'transfer';
+    const amount = 100;
+    const origin = '1';
+    const destination = '2';
+
+    Account.deposit({ destination: origin, amount: 250 });
+    const { status, message } = eventHandler({
+      type,
+      origin,
+      amount,
+      destination,
+    });
+
+    expect(status).toBe(STATUS_CREATED);
+    expect(message).toEqual({
+      origin: {
+        id: origin,
+        balance: 150,
+      },
+      destination: {
+        id: destination,
+        balance: amount,
+      },
+    });
+  });
 });

@@ -20,6 +20,41 @@ const withdraw = (event) => {
   }
 };
 
+const transfer = ({ origin, amount, destination }) => {
+  try {
+    const {
+      origin: originAccount,
+      destination: destinationAccount,
+    } = Account.transfer({
+      origin,
+      amount,
+      destination,
+    });
+
+    const status = STATUS_CREATED;
+    const message = {
+      origin: {
+        id: originAccount.id,
+        balance: originAccount.balance,
+      },
+      destination: {
+        id: destinationAccount.id,
+        balance: destinationAccount.balance,
+      },
+    };
+
+    return {
+      status,
+      message,
+    };
+  } catch (error) {
+    return {
+      status: STATUS_NOT_FOUND,
+      message: MESSAGE_NOT_FOUND,
+    };
+  }
+};
+
 const eventHandler = (event) => {
   let status;
   let message;
@@ -31,6 +66,10 @@ const eventHandler = (event) => {
     message = { destination: { id, balance } };
   } else if (type === 'withdraw') {
     const response = withdraw(event);
+    status = response.status;
+    message = response.message;
+  } else if (type === 'transfer') {
+    const response = transfer(event);
     status = response.status;
     message = response.message;
   } else {

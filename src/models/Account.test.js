@@ -46,4 +46,26 @@ describe('Account', () => {
     const account = Account.withdraw({ origin, amount: 400 });
     expect(account.balance).toBe(20);
   });
+
+  it('should fail on transfer from non existing account', () => {
+    try {
+      Account.transfer({ origin: '100', amount: 15, destination: '300' });
+    } catch ({ message }) {
+      expect(message).toBe('Cannot transfer from non existing account');
+    }
+  });
+
+  it('should successfuly tranfer from origin to destionation', () => {
+    Account.deposit({ destination: 100, amount: 115 });
+    const { origin, destination } = Account.transfer({
+      origin: '100',
+      amount: 15,
+      destination: '300',
+    });
+
+    expect(origin.id).toBe('100');
+    expect(origin.balance).toBe(100);
+    expect(destination.id).toBe('300');
+    expect(destination.balance).toBe(15);
+  });
 });

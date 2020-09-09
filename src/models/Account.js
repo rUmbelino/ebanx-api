@@ -48,6 +48,21 @@ class Account {
     account.persist();
     return account;
   }
+
+  static transfer({ origin, amount, destination }) {
+    const originAccount = this.findById(origin);
+    if (!originAccount) {
+      throw new Error('Cannot transfer from non existing account');
+    }
+
+    const detinationAccount = Account.deposit({ destination, amount });
+    Account.withdraw({ origin, amount });
+
+    return {
+      origin: originAccount,
+      destination: detinationAccount,
+    };
+  }
 }
 
 module.exports = Account;
