@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
-const { STATUS_ERROR } = require('./constants');
-const eventHandler = require('../controller/event');
+const { STATUS_ERROR } = require('../utils/constants');
+const eventHandler = require('../services/event');
 
 const router = Router();
 

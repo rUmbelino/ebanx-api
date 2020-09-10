@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
-const { MESSAGE_OK } = require('./constants');
 const Storage = require('../models/Storage');
+const { MESSAGE_OK } = require('../utils/constants');
 
 const router = Router();
 

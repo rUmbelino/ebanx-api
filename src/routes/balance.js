@@ -1,11 +1,11 @@
 const { Router } = require('express');
 
+const Account = require('../models/Account');
 const {
   STATUS_ERROR,
   STATUS_NOT_FOUND,
   MESSAGE_NOT_FOUND,
-} = require('./constants');
-const Account = require('../models/Account');
+} = require('../utils/constants');
 
 const router = Router();
 

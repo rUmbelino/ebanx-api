@@ -3,7 +3,7 @@ const {
   STATUS_CREATED,
   STATUS_NOT_FOUND,
   MESSAGE_NOT_FOUND,
-} = require('../routes/constants');
+} = require('../utils/constants');
 const Storage = require('../models/Storage');
 const Account = require('../models/Account');
 
