@@ -13,3 +13,5 @@ EBANX Software Engineer home assignment. Created using express.js, the API consi
 - Install the project with npm install
 - Run it with npm start
 - You can also run with npm run dev, with this command the app will automatically restart when a file change
+
+You can check the online version of the API [here](https://secure-badlands-78273.herokuapp.com/)

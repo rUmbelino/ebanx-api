@@ -1,4 +1,4 @@
-const Storage = require('./Storage');
+const Storage = require('../Storage');
 
 class Account {
   constructor(id, balance = 0) {
